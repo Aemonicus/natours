@@ -1,0 +1,23 @@
+doctype html 
+html 
+  // HEAD
+  include head
+
+  body 
+    // HEADER
+    include header
+
+    // CONTENT
+    block content 
+      h1 Toto Heading
+
+    // FOOTER
+    include footer
+
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js")
+    script(src="/js/mapbox.js")
+    script(src="/js/login.js")
+    script(src="/js/updateSettings.js")
+    script(src="/js/stripe.js")
+    //- script(src="/js/bundle.js")
+
