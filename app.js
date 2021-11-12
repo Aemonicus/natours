@@ -33,6 +33,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Middleware contre les blocages cors
 app.use(cors({ credentials: true, origin: true }));
 
+// options est un type de requête comme get/post/patch... rien à voir avec des détails/précisions/éléments d'objet
+// Ex app.options("/api/v1/tours/:id", cors())
+app.options("*", cors())
+
 
 // Middleware pour protéger les headers des requêtes http
 // app.use(helmet())
