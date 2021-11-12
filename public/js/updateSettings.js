@@ -22,21 +22,6 @@ const updateSettings = async (data, type) => {
   }
 }
 
-// Repetition des fonctions showAlert et hideAlert présents dans login.js mais comme je préfère éviter les bundlers osef un peu ici
-const showAlert2 = (type, message) => {
-  hideAlert2()
-  const markup = `<div class="alert alert--${type}">${message}</div>`;
-  document.querySelector("body").insertAdjacentHTML("afterbegin", markup);
-
-  window.setTimeout(hideAlert2, 5000)
-}
-
-const hideAlert2 = () => {
-  const element = document.querySelector(".alert")
-  if (element) {
-    element.parentElement.removeChild(element)
-  }
-}
 
 if (userDataForm) {
   userDataForm.addEventListener("submit", event => {
@@ -68,3 +53,6 @@ if (userPasswordForm) {
 
   })
 }
+
+const alertMessage = document.querySelector("body").dataset.alert
+if (alertMessage) showAlert("success", alertMessage, 20)

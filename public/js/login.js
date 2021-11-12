@@ -55,12 +55,12 @@ if (logOutBtn) {
   logOutBtn.addEventListener("click", logout)
 }
 
-const showAlert = (type, message) => {
+const showAlert = (type, message, time = 7) => {
   hideAlert()
   const markup = `<div class="alert alert--${type}">${message}</div>`;
   document.querySelector("body").insertAdjacentHTML("afterbegin", markup);
 
-  window.setTimeout(hideAlert, 5000)
+  window.setTimeout(hideAlert, time * 1000)
 }
 
 const hideAlert = () => {
