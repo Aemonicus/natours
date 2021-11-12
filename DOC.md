@@ -1,5 +1,13 @@
 MDP pour les users en BDD = test1234 sauf pour flo@flo.com = 12345678
 
+Quand on déploie sur heroku:
+  - heroku utilise la commande npm start pour lancer le projet donc il faut enlever "nodemon" de la commande
+  - il faut ajouter au package.json
+    "engines": {
+      "node": ">=14"
+    }
+
+
 
 Function pour de l'import de data depuis un fichier JSON en local présent dans :
 dev-data => data => import-dev-data.js 
