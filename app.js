@@ -16,6 +16,7 @@ const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
 const bookingRouter = require('./routes/bookingRoutes');
+const bookingController = require('./controllers/bookingController');
 const viewRouter = require('./routes/viewRoutes');
 
 const app = express();
@@ -76,6 +77,14 @@ const limiter = rateLimit({
   message: "Too many request from this IP, please try again later"
 })
 app.use("/api", limiter)
+
+
+// ATTENTION, il s'agit de la route pour STRIPE pour sécuriser la validation des achats. Go dashboard sur stripe.com créer un webhooks avec l'url du site/webhook-checkout
+// Ex: https://example.com/webhook-checkout
+// Ca ne marchera pas sans https donc il faut le faire quand le site est hébergé (heroku ou autre), ça ne marchera pas en local
+// On pose cette route ici car STRIPE va envoyer des données sous un format (raw) qui NE doit PAS être ensuite lu/converti par les middleware juste dessous. Si on pose cette route avec les autres tout en bas, les données seront lues/converties et NE resteront PAS sous le format raw.
+// Or on a besoin que ces données restent sous le format RAW dans le bookingController ligne 49
+app.post("/webhook-checkout", express.raw({ type: "application/json" }), bookingController.webhookCheckout)
 
 
 // Middleware "bodyparser", utilisé pour lire les données du body dans req.body
