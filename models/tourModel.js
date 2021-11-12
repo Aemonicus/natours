@@ -185,7 +185,7 @@ tourSchema.pre("save", function (next) {
 
 // Mongoose DOCUMENT MIDDLEWARE: runs AFTER all middlewares
 tourSchema.post("save", function (doc, next) {
-  console.log("Mongoose POST Middleware", doc)
+  // console.log("Mongoose POST Middleware", doc)
   next()
 })
 
@@ -226,7 +226,7 @@ tourSchema.pre(/^find/, function (next) {
 })
 
 tourSchema.post(/^find/, function (docs, next) {
-  console.log("QUERY POST Middleware", docs)
+  // console.log("QUERY POST Middleware", docs)
   console.log(`Query took ${Date.now() - this.start} milliseconds`)
   next()
 })

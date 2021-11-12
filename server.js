@@ -4,7 +4,6 @@ const dotenv = require('dotenv');
 // On va gérer le cas d'une erreur "uncaught Rejection" lors par exemple d'un problème de code asynchrone
 // On le pose tout en haut car il doit pouvoir attraper ce genre d'erreur avant que tout autre code soit lancé
 process.on("uncaughtException", err => {
-  console.log(err.name, ". ", err.message)
   // Dans ce cas de figure il faut poser le process.exit(1) pour nettoyer le code quoi qu'il arrive car node est "pollué" par les uncaught Rejection
   process.exit(1)
 })
@@ -22,7 +21,7 @@ mongoose.connect(DB, {
   useUnifiedTopology: true
 }).then(connect => {
   // console.log(connect.connections);
-  console.log("on est connecté Bébé")
+  // console.log("on est connecté Bébé")
 })
 
 

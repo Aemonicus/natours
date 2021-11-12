@@ -8,6 +8,7 @@ const hpp = require("hpp")
 const path = require("path");
 const cors = require("cors");
 const cookieParser = require("cookie-parser")
+const compression = require("compression")
 
 const AppError = require('./utils/appError')
 const globalErrorHandler = require("./controllers/errorController")
@@ -98,7 +99,8 @@ app.use(hpp({
   whitelist: ["duration", "maxGroupSize", "difficulty", "ratingsAverage", "ratingsQuantity", "price", "priceDiscount", "startDates"]
 }))
 
-
+// Middleware qui va compresser tous les textes que l'on envoie au client (json et compagnie) mais pas les images, histoire d'alléger la réponse
+app.use(compression())
 
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();

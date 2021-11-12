@@ -174,9 +174,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
   // On va poser un try catch et ne pas passer par le gestionnaire global des erreurs car on veut réaliser une action bien précise en plus de simplement dire qu'il y a une erreur
   try {
     const resetURL = `${req.protocol}://${req.get('host')}/api/v1/users/resetPassword/${resetToken}`;
-    console.log("user", user, "resetURL", resetURL)
     await new Email(user, resetURL).sendPasswordReset()
-    console.log("sept")
     res.status(200).json({
       status: "success",
       message: "Token sent to email"

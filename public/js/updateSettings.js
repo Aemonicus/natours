@@ -6,11 +6,8 @@ const userPasswordForm = document.querySelector(".form-user-password")
 // Type is either password or data (name/email)
 const updateSettings = async (data, type) => {
   try {
-    console.log("dans le update", data, type)
+    const url = type === "password" ? "/api/v1/users/updateMyPassword" : "/api/v1/users/updateMe"
 
-    const url = type === "password" ? "http://localhost:3000/api/v1/users/updateMyPassword" : "http://localhost:3000/api/v1/users/updateMe"
-
-    console.log("url", url)
     const res = await axios({
       method: "PATCH",
       url,

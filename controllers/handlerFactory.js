@@ -48,7 +48,6 @@ exports.getOne = (Model, populateOptions) => catchAsync(async (req, res, next) =
   // const tour = await Tour.findOne({ _id: req.params.id })
   // populate me permet de remplir les champs/documents du model liés à une autre collection. Ici il s'agit du champs/document "guides" de la collection "tours" qui "appelle" les infos de la collection "user". Tout se fait donc dans la requête et pas dans la bdd (on ne stocke que les id dans le champs/document "guides" de la collection "tour")
   let query = Model.findById(req.params.id)
-  console.log("populate", populateOptions)
   if (populateOptions) query = query.populate(populateOptions)
   const document = await query
 
